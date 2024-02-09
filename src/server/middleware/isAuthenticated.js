@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-const { VITE_SECRET } = process.env;
+const { SECRET } = process.env;
 
 export const isAuthenticated = (req, res, next) => {
   const headerToken = req.get("Authorization");
@@ -12,7 +12,7 @@ export const isAuthenticated = (req, res, next) => {
   let token;
 
   try {
-    token = jwt.verify(headerToken, VITE_SECRET);
+    token = jwt.verify(headerToken, SECRET);
   } catch (err) {
     err.statusCode = 500;
     throw err;
